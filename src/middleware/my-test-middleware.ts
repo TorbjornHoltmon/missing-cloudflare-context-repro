@@ -7,6 +7,11 @@ export const myTestMiddleware = defineMiddleware(async ({ locals, request, cooki
       url: url.toString(),
       runtimeKeys: Object.keys(locals.runtime ?? {}),
     });
+
+    return new Response('locals.runtime.ctx?.waitUntil is not defined', {
+      status: 500,
+      headers: { 'content-type': 'text/plain' },
+    });
   }
 
   const res = await next();
