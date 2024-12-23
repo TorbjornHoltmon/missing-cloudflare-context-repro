@@ -13,10 +13,5 @@ export const myTestMiddleware = defineMiddleware(async ({ locals, request, cooki
       headers: { 'content-type': 'text/plain' },
     });
   }
-
-  const res = await next();
-
-  const body = await res.arrayBuffer();
-
-  return new Response(body, res);
+  return next();
 });
